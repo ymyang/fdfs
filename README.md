@@ -1,14 +1,13 @@
 # Nodejs Client for FastDFS
 
-[FastDFS](http://bbs.chinaunix.net/forum-240-1.html) ÊÇ¹úÈË¿ª·¢µÄ·Ö²¼Ê½µÄĞ¡ÎÄ¼ş´æ´¢ÏµÍ³¡£Õâ¸öÏîÄ¿ÊÇFastDFSµÄnodejs¿Í»§¶Ë£¬ÓÃÀ´ÓëFastDFS Server½øĞĞ½»»¥£¬½øĞĞÎÄ¼şµÄÏà¹Ø²Ù×÷¡£ÎÒ²âÊÔ¹ıµÄserver°æ±¾ÊÇ4.0.6¡£
-ÅäºÏ[co](https://github.com/visionmedia/co)Ê¹ÓÃ£¬¿ÉÒÔÓÃ[co-fdfs-client](https://github.com/chenboxiang/co-fdfs-client)¡£
+[FastDFS](https://github.com/happyfish100/fastdfs) æ˜¯å›½äººå¼€å‘çš„åˆ†å¸ƒå¼çš„å°æ–‡ä»¶å­˜å‚¨ç³»ç»Ÿã€‚è¿™ä¸ªé¡¹ç›®æ˜¯FastDFSçš„nodejså®¢æˆ·ç«¯ï¼Œç”¨æ¥ä¸FastDFS Serverè¿›è¡Œäº¤äº’ï¼Œè¿›è¡Œæ–‡ä»¶çš„ç›¸å…³æ“ä½œã€‚æˆ‘æµ‹è¯•è¿‡çš„serverç‰ˆæœ¬æ˜¯4.0.6ã€‚
 
-# °²×°
+# å®‰è£…
 ```shell
-npm install fdfs-client
+npm install fastdfs-client
 ```
 
-# Ê¹ÓÃ
+# ä½¿ç”¨
 ```javascript
 var fdfs = new FdfsClient({
     // tracker servers
@@ -18,17 +17,17 @@ var fdfs = new FdfsClient({
             port: 22122
         }
     ],
-    // Ä¬ÈÏ³¬Ê±Ê±¼ä10s
+    // é»˜è®¤è¶…æ—¶æ—¶é—´10s
     timeout: 10000,
-    // Ä¬ÈÏºó×º
-    // µ±»ñÈ¡²»µ½ÎÄ¼şºó×ºÊ±Ê¹ÓÃ
+    // é»˜è®¤åç¼€
+    // å½“è·å–ä¸åˆ°æ–‡ä»¶åç¼€æ—¶ä½¿ç”¨
     defaultExt: 'txt',
-    // charsetÄ¬ÈÏutf8
+    // charseté»˜è®¤utf8
     charset: 'utf8'
 })
 ```
-ÒÔÉÏÊÇÒ»Ğ©»ù±¾ÅäÖÃ£¬Äã»¹¿ÉÒÔ×Ô¶¨ÒåÄãµÄÈÕÖ¾Êä³ö¹¤¾ß£¬Ä¬ÈÏÊÇÊ¹ÓÃconsole
-ÀıÈçÄãÒªÊ¹ÓÃ[debug](https://github.com/visionmedia/debug)×÷ÎªÄãµÄÈÕÖ¾Êä³ö¹¤¾ß£¬Äã¿ÉÒÔÕâÃ´×ö£º
+ä»¥ä¸Šæ˜¯ä¸€äº›åŸºæœ¬é…ç½®ï¼Œä½ è¿˜å¯ä»¥è‡ªå®šä¹‰ä½ çš„æ—¥å¿—è¾“å‡ºå·¥å…·ï¼Œé»˜è®¤æ˜¯ä½¿ç”¨console
+ä¾‹å¦‚ä½ è¦ä½¿ç”¨[debug](https://github.com/visionmedia/debug)ä½œä¸ºä½ çš„æ—¥å¿—è¾“å‡ºå·¥å…·ï¼Œä½ å¯ä»¥è¿™ä¹ˆåšï¼š
 ```javascript
 var debug = require('debug')('fdfs')
 var fdfs = new FdfsClient({
@@ -45,20 +44,20 @@ var fdfs = new FdfsClient({
 })
 ```
 
-### ÉÏ´«ÎÄ¼ş
-×¢£ºÒÔÏÂfileIdÎªgroup + '/' + filename£¬ÒÔÏÂµÄËùÓĞ²Ù×÷Ê¹ÓÃµÄfileId¶¼ÊÇÒ»Ñù
+### ä¸Šä¼ æ–‡ä»¶
+æ³¨ï¼šä»¥ä¸‹fileIdä¸ºgroup + '/' + filenameï¼Œä»¥ä¸‹çš„æ‰€æœ‰æ“ä½œä½¿ç”¨çš„fileIdéƒ½æ˜¯ä¸€æ ·
 
-Í¨¹ı±¾µØÎÄ¼şÃûÉÏ´«
+é€šè¿‡æœ¬åœ°æ–‡ä»¶åä¸Šä¼ 
 ```javascript
 fdfs.upload('test.gif', function(err, fileId) {
-    // fileId Îª group + '/' + filename
+    // fileId ä¸º group + '/' + filename
 })
 ```
 
-ÉÏ´«Buffer
+ä¸Šä¼ Buffer
 ```javascript
 var fs = require('fs')
-// ×¢Òâ´Ë´¦µÄbuffer»ñÈ¡·½Ê½Ö»ÎªÑİÊ¾¹¦ÄÜ£¬Êµ¼Ê²»»áÕâÃ´È¥¹¹½¨buffer
+// æ³¨æ„æ­¤å¤„çš„bufferè·å–æ–¹å¼åªä¸ºæ¼”ç¤ºåŠŸèƒ½ï¼Œå®é™…ä¸ä¼šè¿™ä¹ˆå»æ„å»ºbuffer
 var buffer = fs.readFileSync('test.gif')
 fdfs.upload(buffer, function(err, fileId) {
     
@@ -74,14 +73,14 @@ fdfs.upload(rs, function(err, fileId) {
 })
 ```
 
-ÆäËûÒ»Ğ©options£¬×÷ÎªµÚ2¸ö²ÎÊı´«Èë
+å…¶ä»–ä¸€äº›optionsï¼Œä½œä¸ºç¬¬2ä¸ªå‚æ•°ä¼ å…¥
 ```js
 fdfs.upload('test.gif', {
-    // Ö¸¶¨ÎÄ¼ş´æ´¢µÄgroup£¬²»Ö¸¶¨ÔòÓÉtracker server·ÖÅä
+    // æŒ‡å®šæ–‡ä»¶å­˜å‚¨çš„groupï¼Œä¸æŒ‡å®šåˆ™ç”±tracker serveråˆ†é…
     group: 'group1',
-    // file bytes, file²ÎÊıÎªReadableStreamÊ±±ØĞëÖ¸¶¨
+    // file bytes, fileå‚æ•°ä¸ºReadableStreamæ—¶å¿…é¡»æŒ‡å®š
     size: 1024,
-    // ÉÏ´«ÎÄ¼şµÄºó×º£¬²»Ö¸¶¨Ôò»ñÈ¡file²ÎÊıµÄºó×º£¬²»º¬(.)
+    // ä¸Šä¼ æ–‡ä»¶çš„åç¼€ï¼Œä¸æŒ‡å®šåˆ™è·å–fileå‚æ•°çš„åç¼€ï¼Œä¸å«(.)
     ext: 'jpg'
     
 }, function(err, fileId) {
@@ -89,16 +88,16 @@ fdfs.upload('test.gif', {
 })
 ```
 
-### ÏÂÔØÎÄ¼ş
+### ä¸‹è½½æ–‡ä»¶
 
-ÏÂÔØµ½±¾µØ
+ä¸‹è½½åˆ°æœ¬åœ°
 ```js
 fdfs.download(fileId, 'test_download.gif', function(err) {
     
 })
 ```
 
-ÏÂÔØµ½WritableStream
+ä¸‹è½½åˆ°WritableStream
 ```js
 var fs = require('fs')
 var ws = fs.createWritableStream('test_download.gif')
@@ -108,7 +107,7 @@ fdfs.download(fileId, ws, function(err) {
 
 ```
 
-ÏÂÔØÎÄ¼şÆ¬¶Î
+ä¸‹è½½æ–‡ä»¶ç‰‡æ®µ
 ```js
 fdfs.download(fileId, {
     target: 'test_download.part',
@@ -119,7 +118,7 @@ fdfs.download(fileId, {
 })
 ```
 
-### É¾³ıÎÄ¼ş
+### åˆ é™¤æ–‡ä»¶
 
 ```js
 fdfs.del(fileId, function(err) {
@@ -127,28 +126,28 @@ fdfs.del(fileId, function(err) {
 })
 ```
 
-### »ñÈ¡ÎÄ¼şĞÅÏ¢
+### è·å–æ–‡ä»¶ä¿¡æ¯
 
 ```js
 fdfs.getFileInfo(fileId, function(err, fileInfo) {
-    // fileInfoÓĞ4¸öÊôĞÔ
+    // fileInfoæœ‰4ä¸ªå±æ€§
     // {
-    //   // ÎÄ¼ş´óĞ¡
+    //   // æ–‡ä»¶å¤§å°
     //   size:
-    //   // ÎÄ¼ş´´½¨µÄÊ±¼ä´Á£¬µ¥Î»ÎªÃë
+    //   // æ–‡ä»¶åˆ›å»ºçš„æ—¶é—´æˆ³ï¼Œå•ä½ä¸ºç§’
     //   timestamp:
-    //   // Ğ£ÑéºÍ
+    //   // æ ¡éªŒå’Œ
     //   crc32:
-    //   // ×î³õÉÏ´«µ½µÄstorage serverµÄip
+    //   // æœ€åˆä¸Šä¼ åˆ°çš„storage serverçš„ip
     //   addr:
     // }
     console.log(fileInfo)
 })
 ```
 
-### ÎÄ¼şµÄMeta Data
+### æ–‡ä»¶çš„Meta Data
 
-ÉèÖÃMeta Data, ÎÒÖ»Ìù³öÀ´ÎÄ¼şÇ©ÃûĞÅÏ¢°É£¬flag×Ö¶ÎÈç¹û²»´«ÔòÄ¬ÈÏÊÇO
+è®¾ç½®Meta Data, æˆ‘åªè´´å‡ºæ¥æ–‡ä»¶ç­¾åä¿¡æ¯å§ï¼Œflagå­—æ®µå¦‚æœä¸ä¼ åˆ™é»˜è®¤æ˜¯O
 ```js
 /**
  * @param fileId
@@ -160,7 +159,7 @@ fdfs.getFileInfo(fileId, function(err, fileInfo) {
 fdfs.setMetaData(fileId, metaData, flag, callback)
 ```
 
-»ñÈ¡Meta Data
+è·å–Meta Data
 ```js
 fdfs.getMetaData(fileId, function(err, metaData) {
     console.log(metaData)
@@ -168,23 +167,11 @@ fdfs.getMetaData(fileId, function(err, metaData) {
 ```
 
 
-### ´íÎó´¦Àí
+### é”™è¯¯å¤„ç†
 
-µ±ÎŞtracker¿ÉÓÃÊ±»á´¥·¢errorÊÂ¼ş
+å½“æ— trackerå¯ç”¨æ—¶ä¼šè§¦å‘erroräº‹ä»¶
 ```javascript
 fdfs.on('error', function(err) {
-    // ÔÚÕâÀï´¦Àí´íÎó
+    // åœ¨è¿™é‡Œå¤„ç†é”™è¯¯
 })
 ```
-
-# ²âÊÔ
-²âÊÔÊ±ĞèÒªÓÃµ½co£¬ËùÒÔĞèÒªnode°æ±¾0.11+¡£²âÊÔÇ°ÇëÈ·±£ÅäÖÃºÃFastDFSµÄServerµØÖ·£¬Îªtracker.fastdfs.com:22122£¬»òÕßĞŞ¸Ätest/fdfs_test.jsÖĞµÄclientÅäÖÃ£¬È»ºóÖ´ĞĞÈçÏÂÃüÁî£º
-```shell
-make test
-```
-
-# °ïÖú
-ÓĞÈÎºÎÎÊÌâÇëÌá½»µ½Github IssueÀï
-
-# ÊÚÈ¨Ğ­Òé
-MIT
