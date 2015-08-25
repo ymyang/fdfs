@@ -1,8 +1,6 @@
 /**
- * Author: chenboxiang
- * Date: 14-6-13
- * Time: 下午6:48
+ * Created by yang on 2015/8/25.
  */
 'use strict';
 
-module.exports = require('./lib/fdfs');
+module.exports = require('./lib/fdfs.js');

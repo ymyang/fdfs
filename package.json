@@ -1,6 +1,6 @@
 {
-  "name": "fastdfs-client",
-  "version": "0.6.1",
+  "name": "fdfs",
+  "version": "0.6.2",
   "description": "FastDFS node client",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymyang/fastdfs-client.git"
+    "url": "git+https://github.com/ymyang/fdfs.git"
   },
   "keywords": [
     "FastDFS",
@@ -18,22 +18,15 @@
   "author": "ymyang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ymyang/fastdfs-client/issues"
+    "url": "https://github.com/ymyang/fdfs/issues"
   },
-  "homepage": "https://github.com/ymyang/fastdfs-client#readme",
+  "homepage": "https://github.com/ymyang/fdfs#readme",
   "dependencies": {
     "bignumber.js": "^2.0.7",
     "is-type-of": "^0.3.1",
     "lodash": "^3.10.1"
   },
   "devDependencies": {
-    "blanket": "^1.1.7",
     "mocha": "^2.2.5"
-  },
-  "config": {
-    "blanket": {
-      "pattern": "./lib/[^/.]+\\.js$/i",
-      "onlyCwd": true
-    }
   }
 }

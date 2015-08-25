@@ -4,7 +4,7 @@
 
 # 安装
 ```shell
-npm install fastdfs-client
+npm install fdfs
 ```
 
 # 使用

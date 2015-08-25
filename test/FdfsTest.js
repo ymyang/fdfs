@@ -17,7 +17,7 @@ var fdfs = new FdfsClient({
 })
 
 describe('test fdfs', function() {
-    it('test upload', function(done) {
+    it.only('test upload', function(done) {
         fdfs.upload('d:/test.jpg', function(err, fileId) {
             if (err) {
                 console.error(err);
@@ -32,16 +32,14 @@ describe('test fdfs', function() {
         var b1 = buff.slice(0, 10240);
         var b2 = buff.slice(10240);
         console.log('buff', buff.length, ', b1:', b1.length, ', b2:', b2.length);
-        fdfs.uploadAppenderFile(b1, {ext: 'jpg'}, function(err, fileId) {
+        fdfs.upload(b1, {method: 'uploadAppender', ext: 'jpg'}, function(err, fileId) {
             if (err) {
                 console.error(err);
                 done();
                 return;
             }
             console.info('fileId:', fileId);
-            var appenderFilename = fileId.substring(fileId.indexOf('/') + 1);
-            console.info('appenderFilename:', appenderFilename);
-            fdfs.appendFile(b2, {group: 'group1', appenderFilename: appenderFilename}, function(err, filiId1) {
+            fdfs.upload(b2, {method: 'append', fileId: fileId}, function(err, filiId1) {
                 if (err) {
                     console.error(err);
                     done();
@@ -52,22 +50,20 @@ describe('test fdfs', function() {
             });
         })
     });
-    it.only('test modifyFile', function(done) {
+    it('test modifyFile', function(done) {
         this.timeout(0);
         var buff = fs.readFileSync('d:/test.jpg');
         var b1 = buff.slice(0, 10240);
         var b2 = buff.slice(10240);
         console.log('buff', buff.length, ', b1:', b1.length, ', b2:', b2.length);
-        fdfs.uploadAppenderFile(b1, {ext: 'jpg'}, function(err, fileId) {
+        fdfs.upload(b1, {method: 'uploadAppender', ext: 'jpg'}, function(err, fileId) {
             if (err) {
                 console.error(err);
                 done();
                 return;
             }
             console.info('fileId:', fileId);
-            var appenderFilename = fileId.substring(fileId.indexOf('/') + 1);
-            console.info('appenderFilename:', appenderFilename);
-            fdfs.modifyFile(b2, {group: 'group1', appenderFilename: appenderFilename, offset: b1.length}, function(err, filiId1) {
+            fdfs.upload(b2, {method: 'modify', fileId: fileId, offset: b1.length}, function(err, filiId1) {
                 if (err) {
                     console.error(err);
                     done();
