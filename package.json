@@ -1,0 +1,32 @@
+{
+  "name": "fastdfs-client",
+  "version": "0.6.0",
+  "description": "FastDFS node client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymyang/fastdfs-client.git"
+  },
+  "keywords": [
+    "FastDFS",
+    "fdfs",
+    "node"
+  ],
+  "author": "ymyang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ymyang/fastdfs-client/issues"
+  },
+  "homepage": "https://github.com/ymyang/fastdfs-client#readme",
+  "dependencies": {
+    "bignumber.js": "^2.0.7",
+    "is-type-of": "^0.3.1",
+    "lodash": "^3.10.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
+}
