@@ -14,7 +14,7 @@ var fdfs = new FdfsClient({
     timeout: 10000,
     defaultExt: 'txt',
     charset: 'utf8'
-})
+});
 
 describe('test fdfs', function() {
     it.only('test upload', function(done) {
