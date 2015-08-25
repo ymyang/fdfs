@@ -24,7 +24,7 @@ describe('test fdfs', function() {
             }
             console.info(fileId);
             done();
-        })
+        });
     });
     it('test uploadAppenderFile', function(done) {
         this.timeout(0);
@@ -48,7 +48,7 @@ describe('test fdfs', function() {
                 console.info('fileId1:', filiId1);
                 done();
             });
-        })
+        });
     });
     it('test modifyFile', function(done) {
         this.timeout(0);
@@ -72,6 +72,6 @@ describe('test fdfs', function() {
                 console.info('fileId1:', filiId1);
                 done();
             });
-        })
+        });
     });
 });
