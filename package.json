@@ -27,6 +27,13 @@
     "lodash": "^3.10.1"
   },
   "devDependencies": {
+    "blanket": "^1.1.7",
     "mocha": "^2.2.5"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "./lib/[^/.]+\\.js$/i",
+      "onlyCwd": true
+    }
   }
 }
