@@ -27,8 +27,8 @@ describe('test fdfs', function() {
         });
     });
 
-    it('getFileInfo', function(done) {
-        var fileId = '';
+    it.only('getFileInfo', function(done) {
+        var fileId = 'group1/M00/00/0C/wKgBeFXcy5OERVHaAAAAAA_VA2E555.jpg';
         fdfs.getFileInfo(fileId, function(err, fileInfo) {
             if (err) {
                 console.error(err);
@@ -119,7 +119,7 @@ describe('test fdfs', function() {
         });
     });
 
-    it.only('test modifyFile', function(done) {
+    it('test modifyFile', function(done) {
         this.timeout(0);
         var buff = fs.readFileSync('d:/test.jpg');
         var b1 = buff.slice(0, 10240);
