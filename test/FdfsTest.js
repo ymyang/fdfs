@@ -17,7 +17,7 @@ var fdfs = new FdfsClient({
 });
 
 describe('test fdfs', function() {
-    it.only('test upload', function(done) {
+    it.only('upload', function(done) {
         fdfs.upload('d:/test.jpg', function(err, fileId) {
             if (err) {
                 console.error(err);
@@ -26,6 +26,74 @@ describe('test fdfs', function() {
             done();
         });
     });
+
+    it('getFileInfo', function(done) {
+        var fileId = '';
+        fdfs.getFileInfo(fileId, function(err, fileInfo) {
+            if (err) {
+                console.error(err);
+            }
+            console.info(fileInfo);
+            done();
+        });
+    });
+
+    it('setMetaData', function(done) {
+        var fileId = '';
+        var meta = {
+            fileName : '',
+            fileId: 123
+        }
+        fdfs.setMetaData(fileId, meta, 'M', function(err) {
+            if (err) {
+                console.error(err);
+            }
+            done();
+        });
+    });
+
+    it('getMetaData', function(done) {
+        var fileId = '';
+        fdfs.getMetaData(fileId, function(err, meta) {
+            if (err) {
+                console.error(err);
+            }
+            console.info(meta);
+            done();
+        });
+    });
+    it('getMetaData', function(done) {
+        var fileId = '';
+        fdfs.getMetaData(fileId, function(err, meta) {
+            if (err) {
+                console.error(err);
+            }
+            console.info(meta);
+            done();
+        });
+    });
+
+    it('del', function(done) {
+        var fileId = '';
+        fdfs.del(fileId, function(err) {
+            if (err) {
+                console.error(err);
+            }
+            done();
+        });
+    });
+
+    it('download', function(done) {
+        var fileId = '';
+        var file = '';
+        fdfs.download(fileId, file, function(err) {
+            if (err) {
+                console.error(err);
+            }
+            done();
+        });
+    });
+
     it('test uploadAppenderFile', function(done) {
         this.timeout(0);
         var buff = fs.readFileSync('d:/test.jpg');
@@ -50,6 +118,7 @@ describe('test fdfs', function() {
             });
         });
     });
+
     it('test modifyFile', function(done) {
         this.timeout(0);
         var buff = fs.readFileSync('d:/test.jpg');
