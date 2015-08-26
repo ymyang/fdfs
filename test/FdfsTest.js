@@ -17,7 +17,7 @@ var fdfs = new FdfsClient({
 });
 
 describe('test fdfs', function() {
-    it.only('upload', function(done) {
+    it('upload', function(done) {
         fdfs.upload('d:/test.jpg', function(err, fileId) {
             if (err) {
                 console.error(err);
@@ -119,7 +119,7 @@ describe('test fdfs', function() {
         });
     });
 
-    it('test modifyFile', function(done) {
+    it.only('test modifyFile', function(done) {
         this.timeout(0);
         var buff = fs.readFileSync('d:/test.jpg');
         var b1 = buff.slice(0, 10240);
