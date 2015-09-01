@@ -28,7 +28,7 @@ describe('test fdfs', function() {
     });
 
     it.only('getFileInfo', function(done) {
-        var fileId = 'group1/M00/00/0C/wKgBeFXcy5OERVHaAAAAAA_VA2E555.jpg';
+        var fileId = 'group1/M00/00/0F/wKgBeFXlZJuAdsBZAAPm5H9JxDA153.jpg';
         fdfs.getFileInfo(fileId, function(err, fileInfo) {
             if (err) {
                 console.error(err);
@@ -39,9 +39,9 @@ describe('test fdfs', function() {
     });
 
     it('setMetaData', function(done) {
-        var fileId = '';
+        var fileId = 'group1/M00/00/0F/wKgBeFXlZJuAdsBZAAPm5H9JxDA153.jpg';
         var meta = {
-            fileName : '',
+            fileName : 'test.jpg',
             fileId: 123
         }
         fdfs.setMetaData(fileId, meta, 'M', function(err) {
@@ -53,17 +53,7 @@ describe('test fdfs', function() {
     });
 
     it('getMetaData', function(done) {
-        var fileId = '';
-        fdfs.getMetaData(fileId, function(err, meta) {
-            if (err) {
-                console.error(err);
-            }
-            console.info(meta);
-            done();
-        });
-    });
-    it('getMetaData', function(done) {
-        var fileId = '';
+        var fileId = 'group1/M00/00/0F/wKgBeFXlZJuAdsBZAAPm5H9JxDA153.jpg';
         fdfs.getMetaData(fileId, function(err, meta) {
             if (err) {
                 console.error(err);
