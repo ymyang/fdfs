@@ -1,6 +1,6 @@
 {
   "name": "fdfs",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "FastDFS node client",
   "main": "index.js",
   "scripts": {
