@@ -76,10 +76,16 @@ fdfs.upload(rs, function(err, fileId) {
 其他一些options，作为第2个参数传入
 ```js
 fdfs.upload('test.gif', {
+    // 上传方法 [upload, uploadAppender, append, modify], 默认为upload
+    method: 'upload',
     // 指定文件存储的group，不指定则由tracker server分配
     group: 'group1',
+    // method为append或modify指定追加的源文件
+    fileId: 'group1/M00/00/0F/wKgBeFXlZJuAdsBZAAPm5H9JxDA153.jpg',
     // file bytes, file参数为ReadableStream时必须指定
     size: 1024,
+    // method为modify指定追加的源文件的起始点
+    offset: 10240,
     // 上传文件的后缀，不指定则获取file参数的后缀，不含(.)
     ext: 'jpg'
     
