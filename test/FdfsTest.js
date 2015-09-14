@@ -17,7 +17,7 @@ var fdfs = new FdfsClient({
 });
 
 describe('test fdfs', function() {
-    it('upload', function(done) {
+    it.only('upload', function(done) {
         fdfs.upload('d:/test.jpg', function(err, fileId) {
             if (err) {
                 console.error(err);
@@ -28,7 +28,7 @@ describe('test fdfs', function() {
     });
 
     it('getFileInfo', function(done) {
-        var fileId = 'group1/M00/00/0F/wKgBeFXlZJuAdsBZAAPm5H9JxDA153.jpg';
+        var fileId = 'group1/M00/00/12/wKgBeFX2npCAKbhJAAPm5H9JxDA192.jpg';
         fdfs.getFileInfo(fileId, function(err, fileInfo) {
             if (err) {
                 console.error(err);
@@ -39,7 +39,7 @@ describe('test fdfs', function() {
     });
 
     it('setMetaData', function(done) {
-        var fileId = 'group1/M00/00/0F/wKgBeFXlZJuAdsBZAAPm5H9JxDA153.jpg';
+        var fileId = 'group1/M00/00/12/wKgBeFX2npCAKbhJAAPm5H9JxDA192.jpg';
         var meta = {
             fileName : 'test.jpg',
             fileId: 123
@@ -53,7 +53,7 @@ describe('test fdfs', function() {
     });
 
     it('getMetaData', function(done) {
-        var fileId = 'group1/M00/00/0F/wKgBeFXlZJuAdsBZAAPm5H9JxDA153.jpg';
+        var fileId = 'group1/M00/00/12/wKgBeFX2npCAKbhJAAPm5H9JxDA192.jpg';
         fdfs.getMetaData(fileId, function(err, meta) {
             if (err) {
                 console.error(err);
@@ -109,7 +109,7 @@ describe('test fdfs', function() {
         });
     });
 
-    it.only('test modifyFile', function(done) {
+    it('test modifyFile', function(done) {
         this.timeout(0);
         var buff = fs.readFileSync('d:/test.jpg');
         var b1 = buff.slice(0, 10240);
