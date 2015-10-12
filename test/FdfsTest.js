@@ -18,7 +18,7 @@ var fdfs = new FdfsClient({
 
 describe('test fdfs', function() {
     it.only('upload', function(done) {
-        fdfs.upload('d:/test.jpg', function(err, fileId) {
+        fdfs.upload('d:/index', function(err, fileId) {
             if (err) {
                 console.error(err);
             }
