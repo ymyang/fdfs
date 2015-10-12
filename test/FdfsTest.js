@@ -12,7 +12,7 @@ var fdfs = new FdfsClient({
         }
     ],
     timeout: 10000,
-    defaultExt: 'txt',
+    defaultExt: '',
     charset: 'utf8'
 });
 
