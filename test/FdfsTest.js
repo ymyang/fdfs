@@ -17,8 +17,8 @@ var fdfs = new FdfsClient({
 });
 
 describe('test fdfs', function() {
-    it.only('upload', function(done) {
-        fdfs.upload('d:/index', function(err, fileId) {
+    it('upload', function(done) {
+        fdfs.upload('d:/test.jpg', function(err, fileId) {
             if (err) {
                 console.error(err);
             }
@@ -27,8 +27,8 @@ describe('test fdfs', function() {
         });
     });
 
-    it('getFileInfo', function(done) {
-        var fileId = 'group1/M00/00/12/wKgBeFX2npCAKbhJAAPm5H9JxDA192.jpg';
+    it.only('getFileInfo', function(done) {
+        var fileId = 'group1/M00/00/01/wKgBeFZBki6ACGoyAAPm5H9JxDA800.jpg';
         fdfs.getFileInfo(fileId, function(err, fileInfo) {
             if (err) {
                 console.error(err);
