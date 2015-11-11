@@ -9,7 +9,7 @@ npm install fdfs
 
 # 使用
 ```javascript
-var fdfs = require('fdfs')
+var fdfs = require('fdfs');
 
 var fdfs = new FdfsClient({
     // tracker servers
@@ -26,12 +26,12 @@ var fdfs = new FdfsClient({
     defaultExt: 'txt',
     // charset默认utf8
     charset: 'utf8'
-})
+});
 ```
 以上是一些基本配置，你还可以自定义你的日志输出工具，默认是使用console
 例如你要使用[debug](https://github.com/visionmedia/debug)作为你的日志输出工具，你可以这么做：
 ```javascript
-var debug = require('debug')('fdfs')
+var debug = require('debug')('fdfs');
 var fdfs = new FdfsClient({
     // tracker servers
     trackers: [
@@ -43,7 +43,7 @@ var fdfs = new FdfsClient({
     logger: {
         log: debug
     }
-})
+});
 ```
 
 ### 上传文件
@@ -53,26 +53,26 @@ var fdfs = new FdfsClient({
 ```javascript
 fdfs.upload('test.gif', function(err, fileId) {
     // fileId 为 group + '/' + filename
-})
+});
 ```
 
 上传Buffer
 ```javascript
-var fs = require('fs')
+var fs = require('fs');
 // 注意此处的buffer获取方式只为演示功能，实际不会这么去构建buffer
-var buffer = fs.readFileSync('test.gif')
+var buffer = fs.readFileSync('test.gif');
 fdfs.upload(buffer, function(err, fileId) {
     
-})
+});
 ```
 
 ReadableStream
 ```javascript
-var fs = require('fs')
-var rs = fs.createReadStream('test.gif')
+var fs = require('fs');
+var rs = fs.createReadStream('test.gif');
 fdfs.upload(rs, function(err, fileId) {
     
-})
+});
 ```
 
 其他一些options，作为第2个参数传入
@@ -93,7 +93,7 @@ fdfs.upload('test.gif', {
     
 }, function(err, fileId) {
 
-})
+});
 ```
 
 ### 下载文件
@@ -102,16 +102,16 @@ fdfs.upload('test.gif', {
 ```js
 fdfs.download(fileId, 'test_download.gif', function(err) {
     
-})
+});
 ```
 
 下载到WritableStream
 ```js
-var fs = require('fs')
-var ws = fs.createWritableStream('test_download.gif')
+var fs = require('fs');
+var ws = fs.createWritableStream('test_download.gif');
 fdfs.download(fileId, ws, function(err) {
 
-})
+});
 
 ```
 
@@ -123,7 +123,7 @@ fdfs.download(fileId, {
     bytes: 5
 }, function(err) {
 
-})
+});
 ```
 
 ### 删除文件
@@ -131,7 +131,7 @@ fdfs.download(fileId, {
 ```js
 fdfs.del(fileId, function(err) {
 
-})
+});
 ```
 
 ### 获取文件信息
@@ -149,8 +149,8 @@ fdfs.getFileInfo(fileId, function(err, fileInfo) {
     //   // 最初上传到的storage server的ip
     //   addr:
     // }
-    console.log(fileInfo)
-})
+    console.log(fileInfo);
+});
 ```
 
 ### 文件的Meta Data
@@ -164,14 +164,14 @@ fdfs.getFileInfo(fileId, function(err, fileInfo) {
                 'M' for merge, insert when the meta item not exist, otherwise update it
  * @param callback
  */
-fdfs.setMetaData(fileId, metaData, flag, callback)
+fdfs.setMetaData(fileId, metaData, flag, callback);
 ```
 
 获取Meta Data
 ```js
 fdfs.getMetaData(fileId, function(err, metaData) {
-    console.log(metaData)
-})
+    console.log(metaData);
+});
 ```
 
 
@@ -181,5 +181,5 @@ fdfs.getMetaData(fileId, function(err, metaData) {
 ```javascript
 fdfs.on('error', function(err) {
     // 在这里处理错误
-})
+});
 ```
