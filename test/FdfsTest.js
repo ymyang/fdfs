@@ -17,9 +17,9 @@ var fdfs = new FdfsClient({
 });
 
 describe('test fdfs', function() {
-    it('upload', function(done) {
+    it.only('upload', function(done) {
         this.timeout(0);
-        fdfs.upload('e:/refman-5.7-en.a4.pdf', function(err, fileId) {
+        fdfs.upload('e:/shou.jpg', function(err, fileId) {
             if (err) {
                 console.error(err);
             }
@@ -28,7 +28,7 @@ describe('test fdfs', function() {
         });
     });
 
-    it.only('getFileInfo', function(done) {
+    it('getFileInfo', function(done) {
         var fileId = 'group1/M00/00/01/wKgBeFZBt6OEKF-zAAAAAMXJG30124.pdf';
         fdfs.getFileInfo(fileId, function(err, fileInfo) {
             if (err) {
@@ -40,7 +40,7 @@ describe('test fdfs', function() {
     });
 
     it('setMetaData', function(done) {
-        var fileId = 'group1/M00/00/12/wKgBeFX2npCAKbhJAAPm5H9JxDA192.jpg';
+        var fileId = 'group1/M00/00/01/wKgBeFZBt6OEKF-zAAAAAMXJG30124.pdf';
         var meta = {
             fileName : 'test.jpg',
             fileId: 123
@@ -54,7 +54,7 @@ describe('test fdfs', function() {
     });
 
     it('getMetaData', function(done) {
-        var fileId = 'group1/M00/00/12/wKgBeFX2npCAKbhJAAPm5H9JxDA192.jpg';
+        var fileId = 'group1/M00/00/01/wKgBeFZBt6OEKF-zAAAAAMXJG30124.pdf';
         fdfs.getMetaData(fileId, function(err, meta) {
             if (err) {
                 console.error(err);
@@ -75,8 +75,9 @@ describe('test fdfs', function() {
     });
 
     it('download', function(done) {
-        var fileId = '';
-        var file = '';
+        this.timeout(0);
+        var fileId = 'group1/M00/00/01/wKgBeFZBt6OEKF-zAAAAAMXJG30124.pdf';
+        var file = 'e:/test.pdf';
         fdfs.download(fileId, file, function(err) {
             if (err) {
                 console.error(err);
