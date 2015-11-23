@@ -1,6 +1,6 @@
 # Nodejs Client for FastDFS
 
-[FastDFS](https://github.com/happyfish100/fastdfs) 是国人开发的分布式的小文件存储系统。这个项目是FastDFS的nodejs客户端，用来与FastDFS Server进行交互，进行文件的相关操作。我测试过的server版本是4.0.6。
+[FastDFS](https://github.com/happyfish100/fastdfs) 是分布式文件存储系统。这个项目是FastDFS的NodeJS客户端，用来与FastDFS Server进行交互，进行文件的相关操作。我测试过的server版本是4.0.6。
 
 # 安装
 ```shell
