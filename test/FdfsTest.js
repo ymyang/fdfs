@@ -17,9 +17,46 @@ var fdfs = new FdfsClient({
 });
 
 describe('test fdfs', function() {
-    it.only('upload', function(done) {
+    it('upload', function(done) {
         this.timeout(0);
         fdfs.upload('e:/shou.jpg', function(err, fileId) {
+            if (err) {
+                console.error(err);
+            }
+            console.info(fileId);
+            done();
+        });
+    });
+
+    it('buffer upload', function(done) {
+        this.timeout(0);
+
+        var file = 'e:/shou.jpg';
+        var buf = fs.readFileSync(file);
+        var opts = {
+            ext: 'jpg'
+        };
+
+        fdfs.upload(buf, opts, function(err, fileId) {
+            if (err) {
+                console.error(err);
+            }
+            console.info(fileId);
+            done();
+        });
+    });
+
+    it.only('stream upload', function(done) {
+        this.timeout(0);
+
+        var file = 'e:/shou.jpg';
+        var stream = fs.createReadStream(file);
+        var opts = {
+            size: fs.statSync(file).size,
+            ext: 'jpg'
+        };
+
+        fdfs.upload(stream, opts,  function(err, fileId) {
             if (err) {
                 console.error(err);
             }
