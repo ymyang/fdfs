@@ -79,8 +79,8 @@ describe('test fdfs', function() {
     it('setMetaData', function(done) {
         var fileId = 'group1/M00/00/03/wKgBeFZijMuADtt6AABCS_WBsFQ960.jpg';
         var meta = {
-            fileName : 'test.jpg',
-            fileId: 123
+            fileName : 'shou.jpg',
+            fileId: 1234
         }
         fdfs.setMetaData(fileId, meta, 'M', function(err) {
             if (err) {
