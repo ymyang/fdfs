@@ -2,7 +2,7 @@
  * Created by yang on 2015/8/24.
  */
 var fs = require('fs');
-var FdfsClient = require('../lib/fdfs');
+var FdfsClient = require('../index.js');
 
 var fdfs = new FdfsClient({
     trackers: [
@@ -23,7 +23,7 @@ describe('test fdfs', function() {
             if (err) {
                 console.error(err);
             }
-            console.info(fileId);
+            console.log(fileId);
             done();
         });
     });
@@ -41,7 +41,7 @@ describe('test fdfs', function() {
             if (err) {
                 console.error(err);
             }
-            console.info(fileId);
+            console.log(fileId);
             done();
         });
     });
@@ -60,7 +60,7 @@ describe('test fdfs', function() {
             if (err) {
                 console.error(err);
             }
-            console.info(fileId);
+            console.log(fileId);
             done();
         });
     });
@@ -71,7 +71,7 @@ describe('test fdfs', function() {
             if (err) {
                 console.error(err);
             }
-            console.info(fileInfo);
+            console.log(fileInfo);
             done();
         });
     });
@@ -96,7 +96,7 @@ describe('test fdfs', function() {
             if (err) {
                 console.error(err);
             }
-            console.info(meta);
+            console.log(meta);
             done();
         });
     });
@@ -135,14 +135,14 @@ describe('test fdfs', function() {
                 done();
                 return;
             }
-            console.info('fileId:', fileId);
-            fdfs.upload(b2, {method: 'append', fileId: fileId}, function(err, filiId1) {
+            console.log('fileId:', fileId);
+            fdfs.upload(b2, {method: 'append', fileId: fileId}, function(err, r) {
                 if (err) {
                     console.error(err);
                     done();
                     return;
                 }
-                console.info('fileId1:', filiId1);
+                console.log('append:', r);
                 done();
             });
         });
@@ -160,14 +160,14 @@ describe('test fdfs', function() {
                 done();
                 return;
             }
-            console.info('fileId:', fileId);
-            fdfs.upload(b2, {method: 'modify', fileId: fileId, offset: b1.length}, function(err, filiId1) {
+            console.log('fileId:', fileId);
+            fdfs.upload(b2, {method: 'modify', fileId: fileId, offset: b1.length}, function(err, r) {
                 if (err) {
                     console.error(err);
                     done();
                     return;
                 }
-                console.info('fileId1:', filiId1);
+                console.log('modify:', r);
                 done();
             });
         });
