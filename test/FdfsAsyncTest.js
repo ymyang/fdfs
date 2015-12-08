@@ -19,7 +19,7 @@ var fdfs = new FdfsClient({
 describe('test fdfs', function() {
     it('upload', function(done) {
         this.timeout(0);
-        fdfs.upload('e:/shou.jpg').then(function(fileId) {
+        fdfs.upload('d:/test.jpg').then(function(fileId) {
             console.log(fileId);
             done();
         }).catch(done);
@@ -56,7 +56,7 @@ describe('test fdfs', function() {
     });
 
     it('getFileInfo', function(done) {
-        var fileId = 'group1/M00/00/03/wKgBeFZijMuADtt6AABCS_WBsFQ960.jpg';
+        var fileId = 'group1/M00/00/00/wKgBeFZmNP2AYYbSAAPm5H9JxDA114.jpg';
         fdfs.getFileInfo(fileId).then(function(fileInfo) {
             console.log(fileInfo);
             done();
@@ -91,10 +91,10 @@ describe('test fdfs', function() {
         }).catch(done);
     });
 
-    it('download', function(done) {
+    it.only('download', function(done) {
         this.timeout(0);
-        var fileId = 'group1/M00/00/03/wKgBeFZijMuADtt6AABCS_WBsFQ960.jpg';
-        var file = 'e:/temp.jpg';
+        var fileId = 'group1/M00/00/00/wKgBeFZmNP2AYYbSAAPm5H9JxDA114.jpg';
+        var file = 'd:/temp.jpg';
         fdfs.download(fileId, file).then(function() {
             console.log('download');
             done();
@@ -117,7 +117,7 @@ describe('test fdfs', function() {
         }).catch(done);
     });
 
-    it.only('test modifyFile', function(done) {
+    it('test modifyFile', function(done) {
         this.timeout(0);
         var buff = fs.readFileSync('d:/test.jpg');
         var b1 = buff.slice(0, 10240);
