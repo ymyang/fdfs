@@ -7,7 +7,7 @@ var FdfsClient = require('../index.js');
 var fdfs = new FdfsClient({
     trackers: [
         {
-            host: '192.168.1.120',
+            host: '192.168.0.120',
             port: 22122
         }
     ],
@@ -19,108 +19,87 @@ var fdfs = new FdfsClient({
 describe('test fdfs', function() {
     it('upload', function(done) {
         this.timeout(0);
-        fdfs.upload('e:/shou.jpg', function(err, fileId) {
-            if (err) {
-                console.error(err);
-            }
-            console.log(fileId);
+        fdfs.upload('d:/test.jpg').then(function(fileId) {
+            console.log('fileId:', fileId);
             done();
-        });
+        }).catch(done);
     });
 
     it('buffer upload', function(done) {
         this.timeout(0);
 
-        var file = 'e:/shou.jpg';
+        var file = 'd:/test.jpg';
         var buf = fs.readFileSync(file);
         var opts = {
             ext: 'jpg'
         };
-
-        fdfs.upload(buf, opts, function(err, fileId) {
-            if (err) {
-                console.error(err);
-            }
-            console.log(fileId);
+        fdfs.upload(buf, opts).then(function(fileId) {
+            console.log('fileId:', fileId);
             done();
-        });
+        }).catch(done);
     });
 
     it('stream upload', function(done) {
         this.timeout(0);
 
-        var file = 'e:/shou.jpg';
+        var file = 'd:/test.jpg';
         var stream = fs.createReadStream(file);
         var opts = {
             size: fs.statSync(file).size,
             ext: 'jpg'
         };
 
-        fdfs.upload(stream, opts,  function(err, fileId) {
-            if (err) {
-                console.error(err);
-            }
-            console.log(fileId);
+        fdfs.upload(stream, opts).then(function(fileId) {
+            console.log('fileId:', fileId);
             done();
-        });
+        }).catch(done);
     });
 
-    it.only('getFileInfo', function(done) {
-        var fileId = 'group1/M00/00/03/wKgBeFZijMuADtt6AABCS_WBsFQ960.jpg';
-        fdfs.getFileInfo(fileId, function(err, fileInfo) {
-            if (err) {
-                console.error(err);
-            }
-            console.log(fileInfo);
+    it('getFileInfo', function(done) {
+        var fileId = 'group1/M00/00/09/wKgAeFbZnLGAULR6AAPm5H9JxDA474.jpg';
+        fdfs.getFileInfo(fileId).then(function(fileInfo) {
+            console.log('fileInfo:', fileInfo);
             done();
-        });
+        }).catch(done);
     });
 
     it('setMetaData', function(done) {
-        var fileId = 'group1/M00/00/03/wKgBeFZijMuADtt6AABCS_WBsFQ960.jpg';
+        var fileId = 'group1/M00/00/09/wKgAeFbZnLGAULR6AAPm5H9JxDA474.jpg';
         var meta = {
-            fileName : 'shou.jpg',
+            fileName : 'test.jpg',
             fileId: 1234
-        }
-        fdfs.setMetaData(fileId, meta, 'M', function(err) {
-            if (err) {
-                console.error(err);
-            }
+        };
+        fdfs.setMetaData(fileId, meta, 'M').then(function() {
+            console.log('setMetaData ok');
             done();
-        });
+        }).catch(done);
     });
 
     it('getMetaData', function(done) {
-        var fileId = 'group1/M00/00/03/wKgBeFZijMuADtt6AABCS_WBsFQ960.jpg';
-        fdfs.getMetaData(fileId, function(err, meta) {
-            if (err) {
-                console.error(err);
-            }
-            console.log(meta);
+        var fileId = 'group1/M00/00/09/wKgAeFbZnLGAULR6AAPm5H9JxDA474.jpg';
+        fdfs.getMetaData(fileId).then(function(meta) {
+            console.log('meta:', meta);
             done();
-        });
+        }).catch(done);
     });
 
     it('del', function(done) {
-        var fileId = '';
-        fdfs.del(fileId, function(err) {
-            if (err) {
-                console.error(err);
-            }
+        var fileId = 'group1/M00/00/09/wKgAeFbZnZ6AQCyUAAPm5H9JxDA401.jpg';
+        fdfs.del(fileId).then(function() {
+            console.log('del ok');
             done();
-        });
+        }).catch(done);
     });
 
     it('download', function(done) {
+        // TODO
         this.timeout(0);
-        var fileId = 'group1/M00/00/03/wKgBeFZijMuADtt6AABCS_WBsFQ960.jpg';
-        var file = 'e:/temp.jpg';
-        fdfs.download(fileId, file, function(err) {
-            if (err) {
-                console.error(err);
-            }
+        var fileId = 'group1/M00/00/09/wKgAeFbZnLGAULR6AAPm5H9JxDA474.jpg';
+        var file = 'd:/temp.jpg';
+        fdfs.download(fileId, file).then(function() {
+            console.log('download ok');
             done();
-        });
+        }).catch(done);
     });
 
     it('test uploadAppenderFile', function(done) {
@@ -129,47 +108,28 @@ describe('test fdfs', function() {
         var b1 = buff.slice(0, 10240);
         var b2 = buff.slice(10240);
         console.log('buff', buff.length, ', b1:', b1.length, ', b2:', b2.length);
-        fdfs.upload(b1, {method: 'uploadAppender', ext: 'jpg'}, function(err, fileId) {
-            if (err) {
-                console.error(err);
-                done();
-                return;
-            }
+
+        fdfs.upload(b1, {method: 'uploadAppender', ext: 'jpg'}).then(function(fileId) {
             console.log('fileId:', fileId);
-            fdfs.upload(b2, {method: 'append', fileId: fileId}, function(err, r) {
-                if (err) {
-                    console.error(err);
-                    done();
-                    return;
-                }
-                console.log('append:', r);
-                done();
-            });
-        });
+            return fdfs.upload(b2, {method: 'append', fileId: fileId});
+        }).then(function(r) {
+            console.log('append:', r);
+            done();
+        }).catch(done);
     });
 
-    it('test modifyFile', function(done) {
+    it.only('test modifyFile', function(done) {
         this.timeout(0);
         var buff = fs.readFileSync('d:/test.jpg');
         var b1 = buff.slice(0, 10240);
         var b2 = buff.slice(10240);
         console.log('buff', buff.length, ', b1:', b1.length, ', b2:', b2.length);
-        fdfs.upload(b1, {method: 'uploadAppender', ext: 'jpg'}, function(err, fileId) {
-            if (err) {
-                console.error(err);
-                done();
-                return;
-            }
+        fdfs.upload(b1, {method: 'uploadAppender', ext: 'jpg'}).then(function(fileId) {
             console.log('fileId:', fileId);
-            fdfs.upload(b2, {method: 'modify', fileId: fileId, offset: b1.length}, function(err, r) {
-                if (err) {
-                    console.error(err);
-                    done();
-                    return;
-                }
-                console.log('modify:', r);
-                done();
-            });
-        });
+            return fdfs.upload(b2, {method: 'modify', fileId: fileId, offset: b1.length});
+        }).then(function(r) {
+            console.log('modify:', r);
+            done();
+        }).catch(done);
     });
 });
