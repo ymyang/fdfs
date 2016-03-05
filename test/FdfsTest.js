@@ -17,7 +17,7 @@ var fdfs = new FdfsClient({
 });
 
 describe('test fdfs', function() {
-    it('upload', function(done) {
+    it.only('upload', function(done) {
         this.timeout(0);
         fdfs.upload('d:/test.jpg').then(function(fileId) {
             console.log('fileId:', fileId);
@@ -84,7 +84,7 @@ describe('test fdfs', function() {
     });
 
     it('del', function(done) {
-        var fileId = 'group1/M00/00/09/wKgAeFbZnZ6AQCyUAAPm5H9JxDA401.jpg';
+        var fileId = 'group1/M00/00/09/wKgAeFbafYKAIzUHAAPm5H9JxDA147.jpg';
         fdfs.del(fileId).then(function() {
             console.log('del ok');
             done();
@@ -118,7 +118,7 @@ describe('test fdfs', function() {
         }).catch(done);
     });
 
-    it.only('test modifyFile', function(done) {
+    it('test modifyFile', function(done) {
         this.timeout(0);
         var buff = fs.readFileSync('d:/test.jpg');
         var b1 = buff.slice(0, 10240);
