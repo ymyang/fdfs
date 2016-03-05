@@ -7,7 +7,11 @@ var FdfsClient = require('../index.js');
 var fdfs = new FdfsClient({
     trackers: [
         {
-            host: '192.168.0.120',
+            host: '192.168.0.11',
+            port: 22122
+        },
+        {
+            host: '192.168.0.12',
             port: 22122
         }
     ],
