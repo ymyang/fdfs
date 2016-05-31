@@ -7,13 +7,13 @@ var FdfsClient = require('../index.js');
 var fdfs = new FdfsClient({
     trackers: [
         {
-            host: '192.168.0.120',
+            host: '192.168.0.23',
             port: 22122
         },
-        {
-            host: '192.168.0.12',
-            port: 22122
-        }
+        //{
+        //    host: '192.168.0.12',
+        //    port: 22122
+        //}
     ],
     timeout: 10000,
     defaultExt: '',
@@ -21,7 +21,7 @@ var fdfs = new FdfsClient({
 });
 
 describe('test fdfs', function() {
-    it.only('upload', function(done) {
+    it('upload', function(done) {
         this.timeout(0);
         fdfs.upload('d:/test.jpg').then(function(fileId) {
             console.log('fileId:', fileId);
@@ -133,6 +133,22 @@ describe('test fdfs', function() {
             return fdfs.upload(b2, {method: 'modify', fileId: fileId, offset: b1.length});
         }).then(function(r) {
             console.log('modify:', r);
+            done();
+        }).catch(done);
+    });
+
+    it('listGroups', function(done) {
+        this.timeout(0);
+        fdfs.listGroups().then(function(res) {
+            console.log(res);
+            done();
+        }).catch(done);
+    });
+
+    it.only('listStorages', function(done) {
+        this.timeout(0);
+        fdfs.listStorages('group1').then(function(res) {
+            console.log(res);
             done();
         }).catch(done);
     });

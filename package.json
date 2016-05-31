@@ -1,6 +1,6 @@
 {
   "name": "fdfs",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "description": "FastDFS node client",
   "main": "index.js",
   "scripts": {
@@ -22,11 +22,11 @@
   },
   "homepage": "https://github.com/ymyang/fdfs#readme",
   "dependencies": {
-    "bluebird": "^3.1.5",
+    "bluebird": "^3.4.0",
     "is-type-of": "^1.0.0",
-    "lodash": "^4.0.1"
+    "lodash": "^4.13.1"
   },
   "devDependencies": {
-    "mocha": "^2.2.5"
+    "mocha": "^2.4.5"
   }
 }
