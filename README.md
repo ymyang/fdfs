@@ -225,7 +225,6 @@ fdfs.getFileInfo(fileId).then(function(fileInfo) {
  * @param metaData  {key1: value1, key2: value2}
  * @param flag 'O' for overwrite all old metadata (default)
                 'M' for merge, insert when the meta item not exist, otherwise update it
- * @param callback
  */
 fdfs.setMetaData(fileId, metaData, flag).then(function() {
     // 设置成功
@@ -245,5 +244,29 @@ fdfs.getMetaData(fileId).then(function(metaData) {
 }).catch(function(err) {
     console.error(err);
 );
+
+```
+
+### group信息
+
+```js
+
+fdfs.listGroups().then(function(groups) {
+    console.log(groups);
+}).catch(function(err) {
+    console.error(err);
+); 
+
+```
+
+### storage信息
+
+```js
+
+fdfs.listStorages(‘group1’).then(function(storages) {
+    console.log(storages);
+}).catch(function(err) {
+    console.error(err);
+); 
 
 ```
