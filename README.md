@@ -14,7 +14,7 @@ npm install fdfs
 
 ```javascript
 
-var fdfs = require('fdfs');
+var FdfsClient = require('fdfs');
 
 var fdfs = new FdfsClient({
     // tracker servers
