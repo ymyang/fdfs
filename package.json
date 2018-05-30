@@ -1,6 +1,6 @@
 {
-  "name": "fdfs",
-  "version": "1.0.4",
+  "name": "anp5fdfs",
+  "version": "1.0.0",
   "description": "FastDFS node client",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymyang/fdfs.git"
+    "url": "git+https://github.com/demonrain/fdfs.git"
   },
   "keywords": [
     "FastDFS",
