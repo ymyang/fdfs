@@ -6,7 +6,7 @@
 
 ```shell
 
-npm install fdfs
+npm install anp5fdfs
 
 ```
 
@@ -14,7 +14,7 @@ npm install fdfs
 
 ```javascript
 
-var FdfsClient = require('fdfs');
+var FdfsClient = require('anp5fdfs');
 
 var fdfs = new FdfsClient({
     // tracker servers
@@ -40,7 +40,7 @@ var fdfs = new FdfsClient({
 
 ```javascript
 
-var debug = require('debug')('fdfs');
+var debug = require('debug')('anp5fdfs');
 var fdfs = new FdfsClient({
     // tracker servers
     trackers: [
@@ -172,6 +172,21 @@ fdfs.download(fileId, {
 }).then(function() {
     // 下载完成
     
+}).catch(function(err) {
+    console.error(err);
+);
+
+```
+
+下载文件流
+
+```js
+
+fdfs.download(fileId, 'stream').then(function(cb) {
+    // 下载完成
+    // 拿到文件流
+    var stream = cb.data;
+    // TODO
 }).catch(function(err) {
     console.error(err);
 );
