@@ -145,11 +145,21 @@ describe('test fdfs', function() {
         }).catch(done);
     });
 
-    it.only('listStorages', function(done) {
+    it('listStorages', function(done) {
         this.timeout(0);
         fdfs.listStorages('group1').then(function(res) {
             console.log(res);
             done();
+        }).catch(done);
+    });
+
+    it('fetchBuffer', function(done) {
+        this.timeout(0);
+        var fileId = 'group1/M00/00/00/wKgCm2CnbHWAX7ucAANuhwb0lyM783.pdf';
+        fdfs.fetchBuffer(fileId).then(function(buffer) {
+            fs.writeFile('./test.pdf', buffer, (err, result) => {
+                done(err);
+            });
         }).catch(done);
     });
 });
