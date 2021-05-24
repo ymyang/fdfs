@@ -178,6 +178,16 @@ fdfs.download(fileId, {
 
 ```
 
+### 获取文件buffer数据
+```js
+fdfs.fetchBuffer(fileId).then(function(buffer) {
+    // 获取完成
+
+}).catch(function(err) {
+    console.error(err);
+);
+```
+
 ### 删除文件
 
 ```js
